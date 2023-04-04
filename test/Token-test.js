@@ -1,5 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
+require("@nomicfoundation/hardhat-chai-matchers")
 
 describe("Token contract", function () {
     let Token;
@@ -47,11 +48,11 @@ describe("Token contract", function () {
 
         it("Should transfer tokens from one account to another with allowance", async function () {
             await token.approve(buyer.address, 100);
-            await token.transferFrom(owner.address, buyer.address, 100);
+            await token.connect(buyer).transferFrom(owner.address, buyer.address, 1);
 
-            expect(await token.balanceOf(owner.address)).to.equal(900);
-            expect(await token.balanceOf(buyer.address)).to.equal(100);
-            expect(await token.allowance(owner.address, buyer.address)).to.equal(0);
+            expect(await token.balanceOf(owner.address)).to.equal(999);
+            expect(await token.balanceOf(buyer.address)).to.equal(1);
+            expect(await token.allowance(owner.address, buyer.address)).to.equal(99);
         });
 
         it("Should fail if sender doesn’t have enough allowance", async function () {

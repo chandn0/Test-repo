@@ -11,7 +11,7 @@ require('@nomiclabs/hardhat-etherscan');
 
 
 module.exports = {
-  defaultNetwork: 'buildbear',
+  defaultNetwork: 'hardhat',
 
   networks: {
     hardhat: {},
@@ -100,7 +100,7 @@ module.exports = {
     cache: './cache',
     artifacts: './artifacts',
   },
-  // mocha: {
-  //   timeout: 20000000000,
-  // },
+  mocha: {
+    timeout: 20000000000,
+  },
 };

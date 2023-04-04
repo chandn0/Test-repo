@@ -1,5 +1,7 @@
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 const { expect } = require("chai");
+const { BigNumber } = require("ethers");
+require("@nomicfoundation/hardhat-chai-matchers")
 require("ethers");
 
 
@@ -15,7 +17,7 @@ describe("GameItem Contract", function () {
     }
     it("Should Mint a new token", async function () {
         const { gameItem, owner } = await loadFixture(deployTokenFixture);
-        expect(await gameItem.balanceOf(owner.address)).to.equal(1);
+        expect(BigNumber.from(await gameItem.balanceOf(owner.address)).eq(BigNumber.from(1))).to.be.true;
     });
     it("Should set the owner of the token", async function () {
         const { gameItem, owner } = await loadFixture(deployTokenFixture);
