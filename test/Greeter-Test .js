@@ -38,7 +38,7 @@ describe("Greeter", function () {
         it("should revert with message 'Lucky number should not be 0.', when given 0", async () => {
             await contract.deployed();
 
-            await expect(contract.saveLuckyNumber(1)).to.be.revertedWith(
+            await expect(contract.saveLuckyNumber(0)).to.be.revertedWith(
                 "Lucky number should not be 0."
             );
         });
